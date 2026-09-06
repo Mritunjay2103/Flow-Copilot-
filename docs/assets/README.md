@@ -1,5 +1,5 @@
-# Placeholder
+# Assets
 
-Replace this file with your demo GIF or PNG (`hexflow-demo.gif` / `hexflow-demo.png`) before submission.
+Demo stills used in the root README live in [`../screenshots/`](../screenshots/).
 
-See README “Screenshot / GIF” for exact capture steps.
+Optional: drop a short `hexflow-demo.gif` here if you prefer a motion capture over stills.

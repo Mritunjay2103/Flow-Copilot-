@@ -8,31 +8,27 @@ A Creative Studio concept for HexCoded: describe a short-form campaign, get an e
 
 ---
 
-## Screenshot / GIF
+## Screenshots
 
-**Placeholder — add your capture before submission:**
+### Desktop — planned workflow (Demo engine)
 
-```text
-docs/assets/hexflow-demo.gif   (or .png)
-```
+![Flow Copilot — planned DAG with Demo engine badge](docs/screenshots/03-desktop-planned-graph.png)
 
-**Capture instructions (exact):**
+### Desktop — Copilot edit (hooks before script)
 
-1. Deploy with `AI_MODE=demo` (or run `npm run dev` with demo mode).
-2. Open the live URL in a clean window (~1440×900).
-3. Load **Sneaker launch** (Pulse X1) → **Plan workflow**.
-4. Send: `Add three hook variants before the script.`
-5. Click **Run workflow**, expand Execution, open a media node that shows **Needs provider**.
-6. Record 15–25s as a GIF, or take a still that shows: mode badge **Demo engine**, canvas DAG, Copilot, and execution strip.
-7. Save under `docs/assets/` and embed below.
+![Flow Copilot — after adding hook variants via Copilot](docs/screenshots/04-desktop-after-hooks-edit.png)
 
-**Embed after capture** (uncomment / replace once the file exists):
+### Desktop — execution strip
 
-```markdown
-![HexFlow Copilot — plan, canvas, Demo engine badge](docs/assets/hexflow-demo.gif)
-```
+![Flow Copilot — workflow run with node timings](docs/screenshots/06-desktop-execution.png)
 
-Until then, keep the asset path reserved: `docs/assets/hexflow-demo.gif`
+### Narrow — planned graph + Copilot drawer
+
+![Flow Copilot — narrow layout planned graph](docs/screenshots/12-narrow-planned-graph.png)
+
+![Flow Copilot — narrow Copilot drawer](docs/screenshots/13-narrow-copilot-drawer.png)
+
+More captures (brief, export, persistence, share URL, inspector outputs) live under [`docs/screenshots/`](docs/screenshots/).
 
 ---
 
