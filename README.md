@@ -4,8 +4,6 @@
 
 A creative workflow studio: describe a short-form campaign, get an editable node graph, refine it in chat, and run every step with honest status — including clear “needs provider” labels where media generation is not wired.
 
-> Portfolio prototype — not a production product. No paid providers or API keys required.
-
 ---
 
 ## Screenshots
