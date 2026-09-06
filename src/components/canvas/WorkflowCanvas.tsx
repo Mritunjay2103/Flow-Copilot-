@@ -43,18 +43,34 @@ const SNAP_GRID: [number, number] = [16, 16];
 
 function toFlowNodes(
   workflow: Workflow,
-  selectedNodeId: string | null,
   highlightNodeIds: Set<string>,
 ): WorkflowFlowNode[] {
   return workflow.nodes.map((workflowNode) => ({
     id: workflowNode.id,
     type: "workflow" as const,
     position: workflowNode.position,
-    selected: workflowNode.id === selectedNodeId,
-    data: { workflowNode } satisfies WorkflowNodeData,
+    data: { nodeId: workflowNode.id } satisfies WorkflowNodeData,
     deletable: !workflowNode.locked,
     className: highlightNodeIds.has(workflowNode.id) ? "hf-edit-flash" : undefined,
   }));
+}
+
+function nodeStructureKey(workflow: Workflow): string {
+  return workflow.nodes
+    .map(
+      (n) =>
+        `${n.id}:${n.position.x}:${n.position.y}:${n.locked ? 1 : 0}:${workflow.version}`,
+    )
+    .join("|");
+}
+
+function edgeStructureKey(workflow: Workflow): string {
+  return workflow.edges
+    .map(
+      (e) =>
+        `${e.id}:${e.source}:${e.target}:${e.label ?? ""}:${e.animated ? 1 : 0}`,
+    )
+    .join("|");
 }
 
 function toFlowEdges(
@@ -91,8 +107,9 @@ function WorkflowCanvasInner({
   const removeNode = useWorkflowStore((s) => s.removeNode);
   const resetLayout = useWorkflowStore((s) => s.resetLayout);
 
-  const { fitView, zoomIn, zoomOut } = useReactFlow();
+  const { fitView, zoomIn, zoomOut, setNodes } = useReactFlow();
   const fittedForKey = useRef<string | null>(null);
+  const syncingSelection = useRef(false);
   const [selectedEdgeIds, setSelectedEdgeIds] = useState<Set<string>>(
     () => new Set(),
   );
@@ -107,14 +124,37 @@ function WorkflowCanvasInner({
   );
 
   const nodes = useMemo(
-    () => toFlowNodes(workflow, selectedNodeId, highlightNodeIds),
-    [workflow, selectedNodeId, highlightNodeIds],
+    () => toFlowNodes(workflow, highlightNodeIds),
+    // Runtime status lives in the store; only rebuild RF nodes when layout/highlight changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- nodeStructureKey captures structural fields
+    [nodeStructureKey(workflow), highlightNodeIds],
   );
 
   const edges = useMemo(
     () => toFlowEdges(workflow, selectedEdgeIds, highlightEdgeIds),
-    [workflow, selectedEdgeIds, highlightEdgeIds],
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- edgeStructureKey captures structural fields
+    [edgeStructureKey(workflow), selectedEdgeIds, highlightEdgeIds],
   );
+
+  // Sync store selection → React Flow without replacing the controlled `nodes` prop
+  // (passing `selected` on every parent render fights StoreUpdater during runs).
+  useEffect(() => {
+    syncingSelection.current = true;
+    setNodes((current) => {
+      let changed = false;
+      const next = current.map((n) => {
+        const selected = n.id === selectedNodeId;
+        if (Boolean(n.selected) === selected) return n;
+        changed = true;
+        return { ...n, selected };
+      });
+      return changed ? next : current;
+    });
+    const timer = window.setTimeout(() => {
+      syncingSelection.current = false;
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [selectedNodeId, setNodes]);
 
   useEffect(() => {
     const key = `${workflow.id}:${workflow.version}:${workflow.nodes.length}`;
@@ -151,6 +191,8 @@ function WorkflowCanvasInner({
 
   const onSelectionChange = useCallback(
     ({ nodes: selectedNodes, edges: selectedEdges }: OnSelectionChangeParams) => {
+      if (syncingSelection.current) return;
+
       const nextIds = selectedEdges.map((e) => e.id);
       setSelectedEdgeIds((prev) => {
         if (
@@ -163,8 +205,8 @@ function WorkflowCanvasInner({
       });
 
       const first = selectedNodes[0];
-      if (first && selectedNodeId !== first.id) {
-        selectNode(first.id);
+      if (first) {
+        if (selectedNodeId !== first.id) selectNode(first.id);
       }
     },
     [selectNode, selectedNodeId],

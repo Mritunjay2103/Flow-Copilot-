@@ -25,8 +25,8 @@ export default defineConfig({
     // Always force demo mode so e2e never depends on local Ollama.
     command: "npm run dev -- --port 3000",
     url: "http://127.0.0.1:3000",
-    // Do not reuse an existing server — it may not have AI_MODE=demo.
-    reuseExistingServer: false,
+    // Reuse local `npm run dev` when present; CI always starts a fresh demo server.
+    reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     env: {
       ...process.env,

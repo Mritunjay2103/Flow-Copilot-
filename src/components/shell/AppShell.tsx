@@ -212,7 +212,13 @@ export function AppShell() {
     selectNode(nodeId);
     setInspectorTab("output");
     setRightTab("inspector");
-    setMobileRightOpen(true);
+    // Only open the narrow-layout drawer; desktop already has the right panel.
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 1023px)").matches
+    ) {
+      setMobileRightOpen(true);
+    }
   };
 
   return (

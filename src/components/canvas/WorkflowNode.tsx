@@ -6,9 +6,9 @@ import {
   isInputNode,
   isOutputNode,
   nodeRequiresProvider,
-  type WorkflowNode,
 } from "@/lib/workflow";
 import { cn } from "@/lib/cn";
+import { useWorkflowStore } from "@/store/workflow-store";
 import {
   AlertTriangle,
   formatDuration,
@@ -19,13 +19,18 @@ import {
 } from "./node-visuals";
 
 export type WorkflowNodeData = {
-  workflowNode: WorkflowNode;
+  nodeId: string;
 };
 
 export type WorkflowFlowNode = Node<WorkflowNodeData, "workflow">;
 
 function WorkflowNodeView({ data, selected }: NodeProps<WorkflowFlowNode>) {
-  const node = data.workflowNode;
+  const node = useWorkflowStore((s) =>
+    s.activeWorkflow?.nodes.find((n) => n.id === data.nodeId),
+  );
+
+  if (!node) return null;
+
   const Icon = KIND_ICONS[node.kind];
   const status = STATUS_META[node.runtime.status];
   const duration = formatDuration(node.runtime.durationMs);

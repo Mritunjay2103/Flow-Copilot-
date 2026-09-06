@@ -90,7 +90,8 @@ describe("layout + connection validation", () => {
 
 describe("WorkflowNode status display", () => {
   it("renders status, duration, provider warning, and locked marker", () => {
-    const base = createMinimalValidWorkflow().nodes[1]!;
+    const workflow = createMinimalValidWorkflow();
+    const base = workflow.nodes[1]!;
     const node: WorkflowNode = {
       ...base,
       locked: true,
@@ -105,6 +106,10 @@ describe("WorkflowNode status display", () => {
         durationMs: 1250,
       },
     };
+    useWorkflowStore.getState().loadWorkflow({
+      ...workflow,
+      nodes: workflow.nodes.map((n) => (n.id === node.id ? node : n)),
+    });
 
     render(
       <ReactFlowProvider>
@@ -114,7 +119,7 @@ describe("WorkflowNode status display", () => {
               id: node.id,
               type: "workflow",
               position: { x: 0, y: 0 },
-              data: { workflowNode: node },
+              data: { nodeId: node.id },
             },
           ]}
           nodeTypes={{ workflow: WorkflowNodeComponent }}
@@ -251,6 +256,7 @@ describe("running status visual", () => {
       status: "running",
     });
     const node = workflow.nodes.find((n) => n.id === "brief_analyzer")!;
+    useWorkflowStore.getState().loadWorkflow(workflow);
 
     render(
       <ReactFlowProvider>
@@ -260,7 +266,7 @@ describe("running status visual", () => {
               id: node.id,
               type: "workflow",
               position: { x: 0, y: 0 },
-              data: { workflowNode: node },
+              data: { nodeId: node.id },
             },
           ]}
           nodeTypes={{ workflow: WorkflowNodeComponent }}

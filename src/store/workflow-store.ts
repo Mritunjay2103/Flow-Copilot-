@@ -382,7 +382,10 @@ export const useWorkflowStore = create<WorkflowStore>((set, get) => ({
     return { ok: true };
   },
 
-  selectNode: (nodeId) => set({ selectedNodeId: nodeId }),
+  selectNode: (nodeId) =>
+    set((s) =>
+      s.selectedNodeId === nodeId ? s : { selectedNodeId: nodeId },
+    ),
 
   beginNodeDrag: () => {
     const wf = get().activeWorkflow;
