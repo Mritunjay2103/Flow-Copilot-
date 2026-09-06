@@ -1,26 +1,160 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --hf-bg: #090a0f;
+  --hf-panel: #11131a;
+  --hf-panel-elevated: #171a23;
+  --hf-border: #292d3a;
+  --hf-text: #f4f6fb;
+  --hf-text-secondary: #969daf;
+  --hf-violet: #8b5cf6;
+  --hf-cyan: #22d3ee;
+  --hf-success: #2dd4bf;
+  --hf-warning: #f59e0b;
+  --hf-destructive: #fb7185;
+  --hf-focus: #22d3ee;
+  --hf-topbar-h: 64px;
+  --hf-left-w: 240px;
+  --hf-right-w: 360px;
+  --hf-drawer-h: 200px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-hf-bg: var(--hf-bg);
+  --color-hf-panel: var(--hf-panel);
+  --color-hf-panel-elevated: var(--hf-panel-elevated);
+  --color-hf-border: var(--hf-border);
+  --color-hf-text: var(--hf-text);
+  --color-hf-muted: var(--hf-text-secondary);
+  --color-hf-violet: var(--hf-violet);
+  --color-hf-cyan: var(--hf-cyan);
+  --color-hf-success: var(--hf-success);
+  --color-hf-warning: var(--hf-warning);
+  --color-hf-destructive: var(--hf-destructive);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--hf-bg);
+  color: var(--hf-text);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.45;
 }
+
+:focus-visible {
+  outline: 2px solid var(--hf-focus);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.hf-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hf-border) transparent;
+}
+
+.hf-canvas-grid {
+  background-color: #0c0e14;
+  background-image:
+    linear-gradient(to right, rgba(41, 45, 58, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 45, 58, 0.45) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes hf-running-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+  }
+}
+
+@keyframes hf-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hf-running-ring {
+  animation: hf-running-pulse 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hf-running-ring {
+    animation: none;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.35);
+  }
+}
+
+.react-flow__controls-button {
+  fill: var(--hf-text) !important;
+}
+
+@keyframes hf-edit-flash {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.55);
+  }
+  40% {
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+  }
+}
+
+.react-flow__node.hf-edit-flash {
+  animation: hf-edit-flash 1.5s ease-out;
+}
+
+.react-flow__edge.hf-edit-flash-edge path {
+  stroke: var(--hf-cyan) !important;
+  stroke-width: 2.5 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .react-flow__node.hf-edit-flash {
+    animation: none;
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.45);
+  }
+}
+
