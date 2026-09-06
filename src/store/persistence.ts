@@ -1,7 +1,9 @@
 import type { Workflow } from "@/lib/workflow";
 import { WorkflowSchema, validateWorkflowGraph } from "@/lib/workflow";
 
-export const PERSISTENCE_KEY = "hexflow-copilot:v1";
+export const PERSISTENCE_KEY = "flow-copilot:v1";
+/** Legacy key from earlier branding — read once for migration. */
+const LEGACY_PERSISTENCE_KEY = "hexflow-copilot:v1";
 
 export type PersistedCopilotMessage = {
   id: string;
@@ -58,7 +60,9 @@ export function readPersistedState(
     storage = localStorage;
   }
   try {
-    const raw = storage.getItem(PERSISTENCE_KEY);
+    const raw =
+      storage.getItem(PERSISTENCE_KEY) ??
+      storage.getItem(LEGACY_PERSISTENCE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as unknown;
     if (!parsed || typeof parsed !== "object") return null;
@@ -107,6 +111,7 @@ export function writePersistedState(
         copilotMessages: slice.copilotMessages,
       }),
     );
+    storage.removeItem(LEGACY_PERSISTENCE_KEY);
   } catch {
     // QuotaExceeded or private-mode storage — fail soft.
   }
@@ -117,6 +122,7 @@ export function clearPersistedState(storage?: Storage): void {
     storage = localStorage;
   }
   storage.removeItem(PERSISTENCE_KEY);
+  storage.removeItem(LEGACY_PERSISTENCE_KEY);
 }
 
 /** Debounced persistence writer (browser-only). */

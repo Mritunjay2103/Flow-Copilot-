@@ -1,4 +1,4 @@
-# HexFlow Copilot — Quality Report
+# Flow Copilot — Quality Report
 
 **Date:** 2026-09-06  
 **Scope:** Prompt 15 security pass + Prompt 17 final visual/functional audit  
@@ -82,7 +82,7 @@ Narrow: library/copilot drawers + run without horizontal overflow blockers.
 
 | Item | Why |
 |------|-----|
-| Distributed rate limiting / CSP hardening | Outside hiring-demo MVP |
+| Distributed rate limiting / CSP hardening | Outside portfolio MVP |
 | Full automated axe suite | Manual + Playwright path coverage for submission |
 | React Flow Pro license | Attribution warning only; product remains usable |
 

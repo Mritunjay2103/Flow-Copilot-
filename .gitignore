@@ -54,7 +54,7 @@ yarn-error.log*
 next-env.d.ts
 
 # internal authoring (not part of the shipped app)
-HexFlow_Cursor_Prompt_Pack.md
+*_Cursor_Prompt_Pack.md
 /tmp/
 *.local
 !*.example

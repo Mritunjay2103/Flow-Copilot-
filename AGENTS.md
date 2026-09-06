@@ -8,9 +8,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# HexFlow Copilot — Agent Engineering Rules
+# Flow Copilot — Agent Engineering Rules
 
-You are working on **HexFlow Copilot**, subtitled “A Creative Studio concept for HexCoded.” Tagline: *Turn creative intent into executable workflows.*
+You are working on **Flow Copilot**, a creative workflow studio. Tagline: *Turn creative intent into executable workflows.*
 
 ## Before you edit
 

@@ -1,4 +1,4 @@
-# HexFlow Copilot — Demo script (90–120 seconds)
+# Flow Copilot — Demo script (90–120 seconds)
 
 Use this for a recruiter-facing screen recording. Prefer the **deployed** demo (`AI_MODE=demo`) so evaluators can replay the same path.
 
@@ -31,7 +31,7 @@ Target length: **90–120 seconds**.
 2. Confirm **Demo engine** in the top bar.
 
 **Narration:**  
-“HexFlow Copilot turns a creative brief into an executable workflow graph. This public build uses the deterministic demo engine — interactive software, not a mocked screenshot — and no external API keys.”
+“Flow Copilot turns a creative brief into an executable workflow graph. This public build uses the deterministic demo engine — interactive software, not a mocked screenshot — and no external API keys.”
 
 ### 2. Choose Pulse X1 and generate (≈15s)
 

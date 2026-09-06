@@ -1,29 +1,29 @@
-# HexFlow Copilot — Product Specification
+# Flow Copilot — Product Specification
 
-**Product name:** HexFlow Copilot  
-**Descriptor:** A Creative Studio concept for HexCoded  
+**Product name:** Flow Copilot  
+**Descriptor:** Creative workflow studio  
 **Tagline:** Turn creative intent into executable workflows.
 
 ## Problem statement
 
 Creative teams turn campaign briefs into production pipelines by hand: analyzing intent, writing scripts, planning scenes, building prompts, validating brand rules, and adapting for platforms. That work is fragmented across docs, chats, and tools, with no single editable, executable representation of the plan.
 
-HexFlow Copilot turns a natural-language creative brief into an editable node-based workflow. A chat copilot then modifies the graph through conversational commands. Nodes can be executed with visible status, outputs, timings, and export—so intent becomes a inspectable, runnable DAG rather than a static document.
+Flow Copilot turns a natural-language creative brief into an editable node-based workflow. A chat copilot then modifies the graph through conversational commands. Nodes can be executed with visible status, outputs, timings, and export—so intent becomes a inspectable, runnable DAG rather than a static document.
 
 ## Target user
 
-A creative strategist, producer, or hiring evaluator who wants to:
+A creative strategist, producer, or portfolio reviewer who wants to:
 
 - describe a short-form campaign in plain language;
 - see a structured workflow immediately;
 - refine the graph by talking (“add a brand check,” “branch into three hooks”);
 - run nodes and inspect outputs without wiring paid generation APIs.
 
-Primary context for this prototype: a polished **hiring / portfolio demo** for HexCoded, usable locally with Ollama and publicly with a deterministic demo engine.
+Primary context for this prototype: a polished **portfolio demo**, usable locally with Ollama and publicly with a deterministic demo engine.
 
 ## Primary user journey
 
-1. Open HexFlow Copilot and compose a creative brief (objective, audience, platform, duration, tone, product, constraints).
+1. Open Flow Copilot and compose a creative brief (objective, audience, platform, duration, tone, product, constraints).
 2. Submit the brief → agent plans a DAG workflow (demo or Ollama).
 3. Inspect the graph on a React Flow canvas; select nodes to view config and runtime.
 4. Chat with the copilot to edit the graph (add/remove/replace nodes, update metadata).

@@ -1,10 +1,10 @@
-# HexFlow Copilot
+# Flow Copilot
 
 **Turn creative intent into executable workflows.**
 
-A Creative Studio concept for HexCoded: describe a short-form campaign, get an editable node graph, refine it in chat, and run every step with honest status — including clear “needs provider” labels where media generation is not wired.
+A creative workflow studio: describe a short-form campaign, get an editable node graph, refine it in chat, and run every step with honest status — including clear “needs provider” labels where media generation is not wired.
 
-> Independent product concept built for the HexCoded hiring challenge. Not affiliated with or employed by HexCoded. Not a production product.
+> Portfolio prototype — not a production product. No paid providers or API keys required.
 
 ---
 
@@ -32,13 +32,13 @@ More captures (brief, export, persistence, share URL, inspector outputs) live un
 
 ---
 
-## Why this should exist in HexCoded
+## Why this exists
 
-HexCoded’s Creative Studio direction is about turning briefs into production systems — not one-off chat answers. Teams still bounce between docs, prompts, and tools when they need a **shared, editable, runnable** plan.
+Creative teams still bounce between docs, prompts, and tools when they need a **shared, editable, runnable** plan — not one-off chat answers.
 
 **Product hypothesis:** conversational control over a node canvas reduces workflow setup friction. Talking (“add three hooks,” “swap voice-over for subtitles”) should mutate a validated DAG, not dump a new opaque document.
 
-HexFlow is a focused prototype of that loop: brief → DAG → chat edits → execute → inspect — with a public deterministic engine and optional local Ollama using the **same** contracts.
+Flow Copilot is a focused prototype of that loop: brief → DAG → chat edits → execute → inspect — with a public deterministic engine and optional local Ollama using the **same** contracts.
 
 ---
 
@@ -52,7 +52,7 @@ HexFlow is a focused prototype of that loop: brief → DAG → chat edits → ex
 - Export / import / share-hash, undo, persistence in `localStorage` only  
 - Desktop-first shell with a usable narrow layout  
 
-This is a hiring / portfolio prototype, not production-ready software.
+This is a portfolio prototype, not production-ready software.
 
 ---
 
@@ -218,15 +218,9 @@ Repository URL (fill in after publish): `YOUR_REPO_URL`
 
 ---
 
-## What I would build next with the HexCoded team
+## What I would build next
 
 1. Real provider adapters behind the existing `needs_provider` boundary, with the same honesty labels until connected.  
 2. Collaborative review of a workflow version (comments on nodes, shareable read-only views).  
 3. Deeper brand / platform validators fed by studio guidelines, still as first-class graph nodes.  
 4. Hardening toward multi-tenant deployment (auth, durable store, real rate limits) without changing the conversational-DAG hypothesis.
-
----
-
-## Independent-concept disclaimer
-
-HexFlow Copilot is an **independent product concept** built for the HexCoded hiring challenge. It does not imply affiliation with, endorsement by, or employment at HexCoded. All trademarks belong to their owners.

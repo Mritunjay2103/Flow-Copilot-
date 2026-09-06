@@ -44,9 +44,9 @@ test.describe("final recruiter demo audit", () => {
     await context.clearCookies();
     await page.addInitScript(() => {
       try {
-        if (!sessionStorage.getItem("__hexflow_audit_cleared")) {
+        if (!sessionStorage.getItem("__flow_audit_cleared")) {
           localStorage.clear();
-          sessionStorage.setItem("__hexflow_audit_cleared", "1");
+          sessionStorage.setItem("__flow_audit_cleared", "1");
         }
       } catch {
         /* ignore */
@@ -152,7 +152,7 @@ test.describe("final recruiter demo audit", () => {
     // Debounced localStorage writer (300ms) — wait before refresh persistence check.
     await page.waitForTimeout(600);
     const persisted = await page.evaluate(() =>
-      Boolean(localStorage.getItem("hexflow-copilot:v1")),
+      Boolean(localStorage.getItem("flow-copilot:v1")),
     );
     expect(persisted).toBe(true);
 
@@ -202,9 +202,9 @@ test.describe("final recruiter demo audit", () => {
     await context.clearCookies();
     await page.addInitScript(() => {
       try {
-        if (!sessionStorage.getItem("__hexflow_audit_cleared")) {
+        if (!sessionStorage.getItem("__flow_audit_cleared")) {
           localStorage.clear();
-          sessionStorage.setItem("__hexflow_audit_cleared", "1");
+          sessionStorage.setItem("__flow_audit_cleared", "1");
         }
       } catch {
         /* ignore */

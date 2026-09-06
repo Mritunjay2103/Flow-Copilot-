@@ -69,7 +69,7 @@ export function TopBar({
             Flow Copilot
           </h1>
           <p className="truncate text-[11px] text-hf-muted max-sm:hidden">
-            Creative Studio concept
+            Creative workflow studio
           </p>
         </div>
       </div>

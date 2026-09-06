@@ -3,7 +3,8 @@
 import { useEffect, useId, useState } from "react";
 import { Button } from "@/components/ui";
 
-export const ONBOARDING_STORAGE_KEY = "hexflow-copilot:onboarding-dismissed";
+export const ONBOARDING_STORAGE_KEY = "flow-copilot:onboarding-dismissed";
+const LEGACY_ONBOARDING_KEY = "hexflow-copilot:onboarding-dismissed";
 
 const STEPS = [
   {
@@ -23,7 +24,10 @@ const STEPS = [
 function readDismissed(): boolean {
   if (typeof window === "undefined") return true;
   try {
-    return localStorage.getItem(ONBOARDING_STORAGE_KEY) === "1";
+    return (
+      localStorage.getItem(ONBOARDING_STORAGE_KEY) === "1" ||
+      localStorage.getItem(LEGACY_ONBOARDING_KEY) === "1"
+    );
   } catch {
     return true;
   }
@@ -32,6 +36,7 @@ function readDismissed(): boolean {
 function writeDismissed() {
   try {
     localStorage.setItem(ONBOARDING_STORAGE_KEY, "1");
+    localStorage.removeItem(LEGACY_ONBOARDING_KEY);
   } catch {
     // ignore quota / private mode
   }

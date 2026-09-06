@@ -1,4 +1,4 @@
-# HexFlow Copilot — Architecture
+# Flow Copilot — Architecture
 
 ## Client / server boundary
 
