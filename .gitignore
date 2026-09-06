@@ -16,6 +16,7 @@
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/playwright/.auth/
 
 # next.js
 /.next/
@@ -23,10 +24,13 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+*.log
 
 # debug
 npm-debug.log*
@@ -38,9 +42,19 @@ yarn-error.log*
 .env*
 !.env.example
 
-# vercel
+# vercel / local tooling
 .vercel
+.cursor/
+.idea/
+*.swp
+*.swo
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal authoring (not part of the shipped app)
+HexFlow_Cursor_Prompt_Pack.md
+/tmp/
+*.local
+!*.example
